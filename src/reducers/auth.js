@@ -9,13 +9,6 @@ import {
     VERIFY_SUCCESS
   } from "../actions/";
 
-export default (state = {}, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
-
 export default (
     state = {
         isLoggingIn: false,
