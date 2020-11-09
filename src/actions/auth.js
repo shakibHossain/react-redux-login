@@ -2,7 +2,11 @@ import { myFirebase } from "../firebase/firebase";
 
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";z
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const REGISTER_REQUEST = "REGISTER_REQUEST";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
@@ -27,6 +31,25 @@ const loginSuccess = user => {
 const loginFailure = () => {
     return {
       type: LOGIN_FAILURE
+    };
+};
+
+const registerRequest = () => {
+    return {
+      type: REGISTER_REQUEST
+    };
+};
+
+const registerSuccess = user => {
+    return {
+      type: REGISTER_SUCCESS,
+      user
+    };
+};
+
+const registerFailure = () => {
+    return {
+      type: REGISTER_FAILURE
     };
 };
 
@@ -70,6 +93,19 @@ export const loginUser = (email, password) => dispatch => {
         })
         .catch(error => {
             dispatch(loginFailure());
+        });
+};
+
+export const registerUser = (email, password) => dispatch => {
+    dispatch(registerRequest());
+    myFirebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(user => {
+            dispatch(registerSuccess(user));
+        })
+        .catch(error => {
+            dispatch(registerFailure());
         });
 };
 
