@@ -4,10 +4,8 @@ import { Redirect, Link } from "react-router-dom";
 import { registerUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";

@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions";
 
 class Home extends Component {
+
   handleLogout = () => {
     const { dispatch } = this.props;
     dispatch(logoutUser());
   };
+  
   render() {
     const { isLoggingOut, logoutError } = this.props;
     return (

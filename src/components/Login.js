@@ -4,14 +4,11 @@ import { Redirect, Link } from "react-router-dom";
 import { loginUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-// import { Link } from 'react-router';
 
 const styles = () => ({
   "@global": {
@@ -37,6 +34,9 @@ const styles = () => ({
   errorText: {
     color: "#f50057",
     marginBottom: 5,
+    textAlign: "center"
+  },
+  header: {
     textAlign: "center"
   }
 });
@@ -65,10 +65,13 @@ class Login extends Component {
       return <Redirect to="/" />;
     } else {
       return (
+        <>
+        <div className={classes.header}><h1>A simple login using styled-components, react-redux</h1></div> 
         <Container component="main" maxWidth="xs">
+          
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Sign in
+              Log In
             </Typography>
             <TextField
               variant="outlined"
@@ -101,7 +104,7 @@ class Login extends Component {
               className={classes.submit}
               onClick={this.handleSubmit}
             >
-              Sign In
+              Log In
             </Button>
             <br/>
             <Link to={"/register"}>
@@ -115,6 +118,7 @@ class Login extends Component {
             </Link>
           </Paper>
         </Container>
+        </>
       );
     }
   }
