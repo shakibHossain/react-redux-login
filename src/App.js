@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App(props) {
+
   const { isAuthenticated, isVerifying } = props;
   return (
     <Switch>
@@ -17,6 +19,7 @@ function App(props) {
         isVerifying={isVerifying}
       />
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
     </Switch>
   );
 }

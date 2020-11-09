@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import { loginUser } from "../actions";
+import { registerUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -11,7 +11,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-// import { Link } from 'react-router';
 
 const styles = () => ({
   "@global": {
@@ -41,7 +40,7 @@ const styles = () => ({
   }
 });
 
-class Login extends Component {
+class Register extends Component {
   state = { email: "", password: "" };
 
   handleEmailChange = ({ target }) => {
@@ -56,11 +55,12 @@ class Login extends Component {
     const { dispatch } = this.props;
     const { email, password } = this.state;
 
-    dispatch(loginUser(email, password));
+    dispatch(registerUser(email, password));
   };
 
   render() {
-    const { classes, loginError, isAuthenticated } = this.props;
+    const { classes, registerError, isAuthenticated } = this.props;
+    
     if (isAuthenticated) {
       return <Redirect to="/" />;
     } else {
@@ -68,7 +68,7 @@ class Login extends Component {
         <Container component="main" maxWidth="xs">
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h5">
-              Sign in
+              Register
             </Typography>
             <TextField
               variant="outlined"
@@ -89,7 +89,7 @@ class Login extends Component {
               id="password"
               onChange={this.handlePasswordChange}
             />
-            {loginError && (
+            {registerError && (
               <Typography component="p" className={classes.errorText}>
                 Incorrect email or password.
               </Typography>
@@ -101,16 +101,16 @@ class Login extends Component {
               className={classes.submit}
               onClick={this.handleSubmit}
             >
-              Sign In
+              Register
             </Button>
             <br/>
-            <Link to={"/register"}>
+            <Link to={"/login"}>
               <Button
                 type="button"
                 variant="contained"
                 className={classes.submit}
               >
-                Create your Account
+                Back to Login Page
               </Button>
             </Link>
           </Paper>
@@ -122,10 +122,10 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    isLoggingIn: state.auth.isLoggingIn,
-    loginError: state.auth.loginError,
+    isRegistering: state.auth.isRegistering,
+    registerError: state.auth.registerError,
     isAuthenticated: state.auth.isAuthenticated
   };
 }
 
-export default withStyles(styles)(connect(mapStateToProps)(Login));
+export default withStyles(styles)(connect(mapStateToProps)(Register));
