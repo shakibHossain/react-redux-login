@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions";
+import Button from "./Button";
 
 class Home extends Component {
 
@@ -8,13 +9,13 @@ class Home extends Component {
     const { dispatch } = this.props;
     dispatch(logoutUser());
   };
-  
+
   render() {
     const { isLoggingOut, logoutError } = this.props;
     return (
       <div>
         <h1>Successfully logged in!</h1>
-        <button onClick={this.handleLogout}>Logout</button>
+        <Button primary onClick={this.handleLogout}>Logout</Button>
         {isLoggingOut && <p>Logging Out....</p>}
         {logoutError && <p>Error logging out</p>}
       </div>

@@ -4,11 +4,11 @@ import { Redirect, Link } from "react-router-dom";
 import { registerUser } from "../actions";
 import { withStyles } from "@material-ui/styles";
 
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
+import Button from "./Button";
 
 const styles = () => ({
   "@global": {
@@ -93,6 +93,7 @@ class Register extends Component {
               </Typography>
             )}
             <Button
+              primary
               type="button"
               variant="contained"
               color="primary"
