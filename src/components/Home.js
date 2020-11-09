@@ -4,6 +4,7 @@ import { logoutUser } from "../actions";
 import Button from "./Button";
 
 class Home extends Component {
+  state = { email: ""};
 
   handleLogout = () => {
     const { dispatch } = this.props;
@@ -11,10 +12,13 @@ class Home extends Component {
   };
 
   render() {
-    const { isLoggingOut, logoutError } = this.props;
+    const { isLoggingOut, logoutError, email } = this.props;
+    
     return (
       <div>
-        <h1>Successfully logged in!</h1>
+        <h1>Logged in as -</h1>
+        {this.props.email}
+        <br/>
         <Button primary onClick={this.handleLogout}>Logout</Button>
         {isLoggingOut && <p>Logging Out....</p>}
         {logoutError && <p>Error logging out</p>}
@@ -26,7 +30,8 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     isLoggingOut: state.auth.isLoggingOut,
-    logoutError: state.auth.logoutError
+    logoutError: state.auth.logoutError,
+    email: state.auth.user.email,
   };
 }
 
