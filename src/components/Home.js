@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions";
 import Button from "./Button";
+import { withStyles } from "@material-ui/styles";
+
+const styles = () => ({
+  "@global": {
+    body: {
+      backgroundColor: "#fff"
+    }
+  },
+  header: {
+    textAlign: "center"
+  }
+});
 
 class Home extends Component {
   state = { email: ""};
@@ -12,10 +24,10 @@ class Home extends Component {
   };
 
   render() {
-    const { isLoggingOut, logoutError, email } = this.props;
+    const { classes, isLoggingOut, logoutError, email } = this.props;
     
     return (
-      <div>
+      <div className={classes.header}>
         <h1>Logged in as -</h1>
         {this.props.email}
         <br/>
@@ -35,4 +47,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default withStyles(styles)(connect(mapStateToProps)(Home));
